@@ -1,0 +1,19 @@
+version: "3.3"
+services:
+  app:
+    image: node:16.5-buster
+    environment:
+      PORT: 3000
+      #REDIS_URL: redis://redis
+      #PG_URL: postgres://
+    ports:
+      - 4050:3000
+      - 9229:9229
+      - 9239:9239 # other debug. node --inspect-brk=0.0.0.0:9239 script.js
+    volumes:
+      - ./:/app
+      - nm-cd-node:/app/node_modules
+    command: sh -c "cd app && npm i && npx nodemon --inspect=0.0.0.0:9229 --ext js,json,env,gql server.js"
+    #depends_on:
+volumes:
+  nm-cd-node:
