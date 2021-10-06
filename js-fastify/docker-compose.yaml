@@ -4,8 +4,7 @@ services:
     image: node:16.5-buster
     environment:
       PORT: 3000
-      #REDIS_URL: redis://redis
-      #PG_URL: postgres://
+      MONGO_URL: mongodb://mongo:27017/docker4dev 
     ports:
       - 4050:3000
       - 9229:9229
@@ -15,5 +14,13 @@ services:
       - nm-cd-node:/app/node_modules
     command: sh -c "cd app && npm i && npx nodemon --inspect=0.0.0.0:9229 --ext js,json,env,gql server.js"
     #depends_on:
+  mongo:
+    image: mongo:4.2.11
+    ports:
+      - "27020:27017"
+    volumes:
+      - ./data/mongo:/data/db
+    command: --nojournal
+
 volumes:
   nm-cd-node:
