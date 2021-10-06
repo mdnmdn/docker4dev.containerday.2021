@@ -19,7 +19,7 @@
       "request": "attach",
       "mode": "remote",
       "remotePath": "/app",
-      "cwd": "${workspaceRoot}",
+      "cwd": "${workspaceRoot}/go-server",
       "port": 2345,
       "host": "127.0.0.1",
       "showLog": true,
